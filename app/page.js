@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import ProfileCard from "./components/ProfileCard";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -31,12 +32,8 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-green-400 p-4">
-        <div className="flex justify-between items-center font-mono text-sm">
-          <div className="text-green-400">bxbx1205@portfolio:~$</div>
-          <div className="text-green-400">2025-08-06 14:59:52</div>
-        </div>
-      </footer>
+      <Footer />
+
     </div>
   );
 }
