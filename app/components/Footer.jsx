@@ -3,30 +3,28 @@
 import React, { useEffect, useState } from 'react'
 
 function Footer() {
-  const [dateTime, setDateTime] = useState(new Date())
+  const [dateTime, setDateTime] = useState("2025-08-21 14:00:55")
+  const userLogin = "bxbx1205";
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setDateTime(new Date())
+      setDateTime(new Date().toLocaleString('sv-SE', { 
+        year: 'numeric', 
+        month: '2-digit', 
+        day: '2-digit', 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit' 
+      }).replace(' ', ' '))
     }, 1000)
     return () => clearInterval(timer)
   }, [])
 
-  // Format the date time in YYYY-MM-DD HH:MM:SS format
-  const formattedDateTime = dateTime.toLocaleString('sv-SE', { 
-    year: 'numeric', 
-    month: '2-digit', 
-    day: '2-digit', 
-    hour: '2-digit', 
-    minute: '2-digit', 
-    second: '2-digit' 
-  })
-
   return (
-    <footer className="border-t border-green-400 p-4">
-      <div className="flex justify-between items-center font-mono text-sm">
-        <div className="text-green-400">bxbx1205@portfolio:~$</div>
-        <div className="text-green-400">{formattedDateTime}</div>
+    <footer className="border-t border-green-400 p-3 md:p-4">
+      <div className="flex flex-col md:flex-row justify-between items-center font-mono text-xs md:text-sm">
+        <div className="text-green-400 mb-2 md:mb-0">{userLogin}@portfolio:~$</div>
+        <div className="text-green-400">{dateTime}</div>
       </div>
     </footer>
   )
