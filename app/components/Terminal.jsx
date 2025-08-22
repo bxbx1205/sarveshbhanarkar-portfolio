@@ -11,22 +11,21 @@ const Terminal = () => {
   const [typingProgress, setTypingProgress] = useState("");
   const inputRef = useRef(null);
   const terminalRef = useRef(null);
-  const typingSpeedRef = useRef(5); // Reference for typing speed to avoid re-renders
+  const typingSpeedRef = useRef(5); 
 
   const currentDate = "2025-08-21 13:58:18";
   const userLogin = "bxbx1205";
 
   // Initialize terminal with welcome message
   useEffect(() => {
-    if (commandHistory.length === 0) {
-      // Add welcome message to history immediately
+  if (commandHistory.length === 0) {
       setCommandHistory([
         {
           command: "welcome",
           output: [
             "Hi, I'm Sarvesh Bhanarkar — Student & Developer.",
             "",
-            "Welcome to my interactive AI-powered portfolio terminal!",
+            "Welcome to my interactive portfolio terminal!",
             "Type 'help' to see available commands."
           ],
           typing: true,
@@ -36,9 +35,9 @@ const Terminal = () => {
     }
   }, []);
 
-  // Optimized typewriter effect with better performance
+  
   useEffect(() => {
-    // Find first entry that needs typing
+    
     const typingEntryIndex = commandHistory.findIndex(entry => entry.typing && !entry.typingComplete);
     
     if (typingEntryIndex >= 0) {
@@ -49,7 +48,7 @@ const Terminal = () => {
       setIsTyping(true);
       setTypingProgress("");
       
-      // Use a more efficient typing mechanism with requestAnimationFrame
+      
       let charIndex = 0;
       let lastTimestamp = 0;
       
@@ -95,13 +94,13 @@ const Terminal = () => {
         requestAnimationFrame(typeNextChar);
       };
       
-      // Start the animation loop
+      
       requestAnimationFrame(typeNextChar);
     }
   }, [commandHistory]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+  const interval = setInterval(() => {
       setShowCursor(prev => (!isTyping ? !prev : true));
     }, 530);
     return () => clearInterval(interval);
@@ -114,7 +113,7 @@ const Terminal = () => {
   };
 
   useEffect(() => {
-    scrollToBottom();
+  scrollToBottom();
   }, [commandHistory, typingProgress]);
 
   useEffect(() => {
@@ -181,7 +180,7 @@ const Terminal = () => {
           "",
           "📁 portfolio",
           "   My live portfolio (this terminal)",
-          "   https://github.com/bxbx1205/portfolio",
+          "   https://github.com/bxbx1205/sarveshbhanarkar-portfolio",
           "",
           "📁 url-shortener",
           "   Custom URL shortening service",
@@ -265,7 +264,6 @@ const Terminal = () => {
         ];
     }
 
-    // Add command to history with typing effect
     setCommandHistory(prev => [
       ...prev, 
       { 
@@ -296,7 +294,6 @@ const Terminal = () => {
     }
   };
 
-  // Make GitHub links clickable
   const renderOutput = (line) => {
     if (line.includes("https://github.com")) {
       const parts = line.split("https://");
@@ -337,8 +334,7 @@ const Terminal = () => {
 
   return (
     <div className="bg-black text-green-400 font-mono text-sm h-full flex flex-col select-none relative">
-      {/* Scanlines overlay effect */}
-      <div className="absolute inset-0 pointer-events-none scanlines"></div>
+  <div className="absolute inset-0 pointer-events-none scanlines"></div>
       
       <div className="border-b border-green-500 p-2 sm:p-3 bg-gray-950 z-10">
         <div className="flex flex-wrap gap-1 text-xs" role="navigation">
@@ -473,14 +469,14 @@ const Terminal = () => {
               <span className="text-green-200 terminal-text">{entry.command}</span>
             </div>
             
-            {/* For entries that are currently being typed */}
+            
             {typingIndex === index && (
               <div className="pl-3 whitespace-pre-line terminal-text typing-active">
                 {typingProgress}
               </div>
             )}
             
-            {/* For entries that have completed typing */}
+            
             {(typingIndex !== index || entry.typingComplete) && entry.output.map((line, lineIndex) => (
               <div 
                 key={lineIndex} 
